@@ -1,0 +1,11 @@
+data,descricao,categoria,valor,tipo
+2024-01-15,Supermercado XYZ,Alimentação,-350.00,débito
+2024-01-16,Salário,Renda,5000.00,crédito
+2024-01-18,Academia Fit,Saúde,-120.00,débito
+2024-01-20,Aluguel,Moradia,-1500.00,débito
+2024-01-22,Uber,Transporte,-45.00,débito
+2024-01-25,Restaurante,Alimentação,-180.00,débito
+2024-01-28,Farmácia,Saúde,-85.00,débito
+2024-02-01,Freelance,Renda,800.00,crédito
+2024-02-03,Conta de Luz,Utilidades,-150.00,débito
+2024-02-05,Netflix,Entretenimento,-45.00,débito
