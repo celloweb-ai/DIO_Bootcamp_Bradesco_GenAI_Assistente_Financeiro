@@ -1,32 +1,46 @@
-# Diretório de Dados
+# Dados do Projeto
 
-Este diretório contém datasets e arquivos de dados utilizados pelo assistente financeiro.
+Este diretório contém os dados utilizados pelo Assistente Financeiro.
 
 ## Estrutura
 
 ```
 data/
-├── raw/              # Dados brutos não processados
+├── raw/              # Dados brutos (não processados)
 ├── processed/        # Dados processados e limpos
-├── samples/          # Dados de exemplo para testes
-└── exports/          # Dados exportados das análises
+├── external/         # Dados de fontes externas
+├── samples/          # Amostras para testes e demonstração
+└── README.md         # Este arquivo
 ```
 
-## Datasets Disponíveis
+## Tipos de Dados
 
-### Samples (Demonstração)
-- `sample_transactions.csv` - Transações financeiras de exemplo
-- `sample_investments.csv` - Portfólio de investimentos
-- `sample_faqs.json` - Base de conhecimento inicial
+### 1. Dados de Usuários (Anonimizados)
+- Preferências de produtos
+- Histórico de interações
+- Perfil de risco
 
-## Uso
+### 2. Dados Financeiros
+- Taxas de juros históricas
+- Índices econômicos (CDI, IPCA, Selic)
+- Cotações de ativos
 
-Os dados são carregados automaticamente pela aplicação. Para adicionar novos datasets:
+### 3. Base de Conhecimento
+- FAQs e respostas
+- Descrições de produtos
+- Termos financeiros
 
-1. Coloque arquivos brutos em `raw/`
-2. Processe usando scripts em `notebooks/`
-3. Salve versões processadas em `processed/`
+## Segurança e Privacidade
 
-## Privacidade
+⚠️ **IMPORTANTE**: 
+- Nunca commitar dados sensíveis ou identificáveis
+- Todos os dados de usuários devem ser anonimizados
+- Utilizar `.gitignore` para arquivos de dados grandes
+- Conformidade com LGPD
 
-⚠️ **IMPORTANTE**: Nunca commite dados sensíveis ou pessoais. Use dados anonimizados ou fictícios.
+## Fontes de Dados
+
+- Banco Central do Brasil (BCB)
+- IBGE
+- B3 (Bolsa de Valores)
+- Dados sintéticos para demonstração

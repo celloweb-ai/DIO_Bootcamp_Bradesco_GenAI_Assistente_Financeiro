@@ -4,262 +4,294 @@
 
 ### 1. Simplicidade
 - Interface limpa e intuitiva
-- Fluxos diretos sem passos desnecessários
-- Linguagem clara e acessível
+- Foco na tarefa principal
+- Mínimo de distrações visuais
 
-### 2. Confiabilidade
-- Design profissional que transmite segurança
-- Feedback claro em todas as ações
-- Transparência nos processos
-
-### 3. Acessibilidade
-- Contraste adequado (WCAG AA)
+### 2. Acessibilidade
+- Contraste adequado (WCAG 2.1 AA)
 - Suporte a leitores de tela
 - Navegação por teclado
-- Textos legíveis (mín. 14px)
+- Textos claros e objetivos
+
+### 3. Consistência
+- Padrões visuais uniformes
+- Terminologia consistente
+- Comportamentos previsíveis
+
+### 4. Feedback
+- Respostas imediatas às ações
+- Indicadores de carregamento
+- Confirmações de sucesso/erro
+- Mensagens claras
 
 ## Paleta de Cores
 
 ### Cores Principais
 ```
-Primária (Azul Bradesco): #CC092F / #E30613
-Secundária (Azul): #003A70
-Sucesso: #28A745
-Alerta: #FFC107
-Erro: #DC3545
-Neutro: #6C757D
+Primária:   #C8102E (Vermelho Bradesco)
+Secundária: #003366 (Azul Escuro)
+Acento:     #FFD700 (Dourado)
 ```
 
-### Aplicação
-- **Primária**: CTAs principais, destaques
-- **Secundária**: Links, elementos secundários
-- **Sucesso**: Confirmações, resultados positivos
-- **Alerta**: Avisos, atenção necessária
-- **Erro**: Erros, validações falhas
+### Cores de Status
+```
+Sucesso:    #28A745
+Aviso:      #FFC107
+Erro:       #DC3545
+Info:       #17A2B8
+```
+
+### Neutros
+```
+Texto:      #212529
+Texto Sec:  #6C757D
+Fundo:      #F8F9FA
+Bordas:     #DEE2E6
+```
 
 ## Tipografia
 
+### Fontes
+- **Primária**: Inter, -apple-system, sans-serif
+- **Código**: 'Fira Code', monospace
+
 ### Hierarquia
 ```
-H1: 32px - Títulos principais
-H2: 24px - Seções
-H3: 20px - Subseções
-Body: 16px - Texto principal
-Caption: 14px - Legendas
-Small: 12px - Notas
+H1: 2.5rem / 40px - Bold
+H2: 2rem / 32px - Semibold
+H3: 1.5rem / 24px - Semibold
+Body: 1rem / 16px - Regular
+Small: 0.875rem / 14px - Regular
 ```
 
-### Fontes
-- **Principal**: Inter, -apple-system, sans-serif
-- **Monospace**: 'Courier New' (valores financeiros)
+## Componentes UI
 
-## Componentes
-
-### Chatbot
+### 1. Chat Interface
 
 #### Mensagens do Usuário
 - Alinhamento: Direita
-- Background: #E3F2FD (azul claro)
-- Borda: Arredondada (12px)
+- Cor de fundo: #E3F2FD
+- Bordas arredondadas: 12px
 - Padding: 12px 16px
 
 #### Mensagens do Assistente
 - Alinhamento: Esquerda
-- Background: #F5F5F5 (cinza claro)
-- Ícone: Robot emoji 🤖
-- Markdown: Suporte completo
+- Cor de fundo: #FFFFFF
+- Borda: 1px solid #DEE2E6
+- Bordas arredondadas: 12px
+- Padding: 12px 16px
+- Ícone: 🤖
 
-### Botões
+### 2. Botões
 
 #### Primário
 ```css
-Background: #CC092F
+Background: #C8102E
 Color: #FFFFFF
-Padding: 12px 24px
-Border-radius: 8px
-Hover: #A00725
+Padding: 10px 20px
+Border-radius: 6px
+Font-weight: 600
+
+Hover: #A00D25
+Active: #8A0B20
 ```
 
 #### Secundário
 ```css
-Background: transparent
-Border: 2px solid #003A70
-Color: #003A70
-Hover: Background #E3F2FD
+Background: Transparent
+Color: #C8102E
+Border: 2px solid #C8102E
+Padding: 10px 20px
+Border-radius: 6px
+
+Hover: Background #FFF5F5
 ```
 
-### Cards
+### 3. Inputs
+
+#### Campo de Texto
+```css
+Border: 1px solid #DEE2E6
+Border-radius: 6px
+Padding: 10px 12px
+Font-size: 1rem
+
+Focus: Border-color #C8102E, Box-shadow 0 0 0 3px rgba(200, 16, 46, 0.1)
+```
+
+### 4. Cards
+
+#### Calculadora/FAQ
 ```css
 Background: #FFFFFF
-Border: 1px solid #E0E0E0
-Border-radius: 12px
-Padding: 20px
-Shadow: 0 2px 8px rgba(0,0,0,0.08)
-```
-
-### Inputs
-```css
-Border: 1px solid #CED4DA
+Border: 1px solid #DEE2E6
 Border-radius: 8px
-Padding: 10px 14px
-Focus: Border #003A70, Shadow
-Error: Border #DC3545
+Padding: 20px
+Box-shadow: 0 2px 4px rgba(0,0,0,0.05)
+
+Hover: Box-shadow 0 4px 8px rgba(0,0,0,0.1)
 ```
 
-## Fluxos de Interação
+## Layout
 
-### Conversa com Chatbot
+### Estrutura da Página
 
-1. **Abertura**
-   - Mensagem de boas-vindas
-   - Sugestões de tópicos
-   - Input sempre visível
-
-2. **Durante a Conversa**
-   - Indicador de digitação
-   - Scroll automático para novas mensagens
-   - Timestamps opcionais
-
-3. **Ações Rápidas**
-   - Botões de sugestão
-   - Atalhos para calculadoras
-   - Link para FAQs
-
-### Calculadoras
-
-1. **Entrada de Dados**
-   - Labels claros
-   - Placeholders com exemplos
-   - Validação em tempo real
-   - Máscaras para valores (R$)
-
-2. **Resultados**
-   - Destaque visual
-   - Gráficos quando relevante
-   - Opção de salvar/exportar
-   - Comparações lado a lado
-
-### Visualizações
-
-#### Gráficos
-- **Cores**: Paleta consistente
-- **Tooltips**: Informativos
-- **Responsividade**: Mobile-friendly
-- **Interatividade**: Zoom, filtros
-
-#### Tabelas
-- **Cabeçalhos**: Fixos ao scroll
-- **Zebra striping**: Linhas alternadas
-- **Ordenação**: Clicável
-- **Paginação**: 10-20 itens/página
-
-## Estados de Interface
-
-### Loading
-- Spinner com mensagem contextual
-- Skeleton screens para conteúdo
-- Progress bar para processos longos
-
-### Empty States
-- Ilustração amigável
-- Texto explicativo
-- CTA para primeira ação
-
-### Erro
-- Mensagem clara do problema
-- Sugestão de solução
-- Opção de tentar novamente
-- Contato para suporte
-
-### Sucesso
-- Confirmação visual (✓)
-- Mensagem positiva
-- Próximos passos sugeridos
-
-## Responsividade
-
-### Breakpoints
 ```
-Mobile: < 768px
-Tablet: 768px - 1024px
-Desktop: > 1024px
+┌────────────────────────────────────────┐
+│            Header/Logo                 │
+├────────────────────────────────────────┤
+│  Sidebar  │      Main Content          │
+│           │                            │
+│  Menu     │   Chat Area                │
+│  Items    │                            │
+│           │   ┌──────────────────┐     │
+│           │   │   Message        │     │
+│           │   │   Message        │     │
+│           │   │   Message        │     │
+│           │   └──────────────────┘     │
+│           │                            │
+│           │   [Input Field]  [Send]    │
+└───────────┴────────────────────────────┘
 ```
 
-### Mobile First
-- Design primário para mobile
-- Progressive enhancement
-- Touch targets mín. 44x44px
-- Gestos intuitivos
+### Responsividade
+
+#### Desktop (>1024px)
+- Sidebar: 280px
+- Main: Flex
+- Layout: 2 colunas
+
+#### Tablet (768px - 1024px)
+- Sidebar: 240px
+- Main: Flex
+- Layout: 2 colunas colapsáveis
+
+#### Mobile (<768px)
+- Sidebar: Menu hamburger
+- Main: 100%
+- Layout: 1 coluna
 
 ## Microinterações
 
-### Animações
-- **Duração**: 200-300ms
-- **Easing**: ease-in-out
-- **Uso**: Transições suaves, não distrações
+### 1. Botão de Envio
+```
+Idle → Hover (escala 1.05) → Click (pulso) → Loading (spinner)
+```
 
-### Feedback Tátil
-- Hover states claros
-- Active states visíveis
-- Focus rings para acessibilidade
+### 2. Mensagens
+```
+Aparecem com fade-in + slide-up (300ms)
+```
 
-## Mensagens e Copywriting
+### 3. Calculadoras
+```
+Resultados aparecem com fade-in (200ms)
+```
 
-### Tom de Voz
-- Profissional mas amigável
-- Claro e direto
-- Evitar jargões técnicos
-- Use "você" (informal)
+### 4. Tooltips
+```
+Hover delay: 500ms
+Fade-in: 200ms
+```
+
+## Estados de Loading
+
+### Chat
+- Mensagem temporária: "Assistente está pensando..."
+- Animação: 3 pontos pulsantes
+- Cor: #6C757D
+
+### Calculadoras
+- Skeleton screen para resultados
+- Spinner centralizado
+
+### Dados
+- Progress bar para carregamentos longos
+- Mensagem descritiva
+
+## Mensagens de Erro
+
+### Estrutura
+```
+┌─────────────────────────────────────┐
+│  ⚠️  Título do Erro                 │
+│                                     │
+│  Descrição clara do problema        │
+│                                     │
+│  [Ação Sugerida]                    │
+└─────────────────────────────────────┘
+```
 
 ### Exemplos
-
-✅ **Bom**: "Vamos calcular seu financiamento?"
-❌ **Ruim**: "Iniciar processo de cálculo de amortização"
-
-✅ **Bom**: "Algo deu errado. Tente novamente."
-❌ **Ruim**: "Erro 500: Internal Server Error"
+- **Erro de Conexão**: "Não foi possível conectar. Verifique sua internet."
+- **Erro de API**: "Serviço temporariamente indisponível. Tente novamente em instantes."
+- **Validação**: "Por favor, preencha todos os campos obrigatórios."
 
 ## Acessibilidade (WCAG 2.1)
 
-### Nível AA Compliance
+### Checklist
+- [ ] Contraste mínimo 4.5:1 para texto
+- [ ] Todos os elementos interativos acessíveis por teclado
+- [ ] Labels descritivos para inputs
+- [ ] Alt text para imagens
+- [ ] Aria-labels para ícones
+- [ ] Foco visível em elementos interativos
+- [ ] Suporte a zoom até 200%
+- [ ] Sem dependência apenas de cor
 
-- [ ] Contraste mínimo 4.5:1
-- [ ] Texto redimensionável até 200%
-- [ ] Navegação por teclado
-- [ ] Alt text em imagens
-- [ ] Labels em formulários
-- [ ] ARIA labels quando necessário
-- [ ] Foco visível
-- [ ] Estrutura semântica HTML
+## Tom de Voz
 
-### Testes
-- Lighthouse Audit
-- axe DevTools
-- Leitores de tela (NVDA, JAWS)
-- Navegação por teclado
+### Características
+- **Amigável**: Como um consultor pessoal
+- **Profissional**: Confiável e competente
+- **Claro**: Sem jargões desnecessários
+- **Prestativo**: Sempre disposto a ajudar
 
-## Performance
+### Exemplos
 
-### Otimizações
-- Lazy loading de imagens
-- Code splitting
-- Minificação de assets
-- Cache de dados
-- Debounce em inputs
+❌ **Evitar**: "Erro 500: Internal Server Error"
+✅ **Preferir**: "Ops! Algo deu errado. Nossa equipe já foi notificada."
 
-### Métricas Alvo
-- First Contentful Paint: < 1.8s
-- Time to Interactive: < 3.9s
-- Largest Contentful Paint: < 2.5s
+❌ **Evitar**: "Input inválido"
+✅ **Preferir**: "Por favor, insira um valor entre R$ 1.000 e R$ 1.000.000"
 
-## Checklist de Qualidade
+## Animações
 
-Antes de cada release:
+### Timing
+- Rápida: 150-200ms (hover, tooltips)
+- Média: 300-400ms (transições, modals)
+- Lenta: 500-600ms (page transitions)
 
-- [ ] Teste em diferentes navegadores
-- [ ] Teste em dispositivos mobile
-- [ ] Validação de acessibilidade
-- [ ] Performance audit
-- [ ] Spell check
-- [ ] Teste de usabilidade
-- [ ] Revisão de copywriting
+### Easing
+- **Entrada**: ease-out
+- **Saída**: ease-in
+- **Bidirecionais**: ease-in-out
+
+## Performance UX
+
+### Tempos Alvo
+- Resposta de chat: < 2s
+- Cálculo financeiro: < 500ms
+- Carregamento de página: < 1s
+- Busca em FAQs: < 300ms
+
+### Estratégias
+- Skeleton screens
+- Optimistic UI updates
+- Lazy loading de componentes
+- Debounce em buscas (300ms)
+
+## Testes de Usabilidade
+
+### Métricas
+1. **Task Success Rate**: > 90%
+2. **Time on Task**: < 2 min (para tarefas comuns)
+3. **Error Rate**: < 5%
+4. **Satisfaction (SUS)**: > 80
+
+### Cenários de Teste
+1. Simular um financiamento
+2. Buscar informação sobre produto
+3. Fazer uma pergunta complexa
+4. Navegar entre funcionalidades
+5. Usar em dispositivo móvel
