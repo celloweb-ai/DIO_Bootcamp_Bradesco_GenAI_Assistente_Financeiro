@@ -1,0 +1,45 @@
+# Core Dependencies
+streamlit==1.29.0
+python-dotenv==1.0.0
+
+# AI and NLP
+openai==1.6.1
+langchain==0.1.0
+langchain-openai==0.0.2
+langchain-community==0.0.10
+sentence-transformers==2.2.2
+chromadb==0.4.22
+
+# Data Processing
+pandas==2.1.4
+numpy==1.26.2
+scipy==1.11.4
+
+# Database
+sqlalchemy==2.0.25
+alembic==1.13.1
+
+# Visualization
+plotly==5.18.0
+matplotlib==3.8.2
+seaborn==0.13.0
+
+# Utils
+pyyaml==6.0.1
+requests==2.31.0
+pydantic==2.5.3
+
+# Testing
+pytest==7.4.3
+pytest-cov==4.1.0
+pytest-mock==3.12.0
+
+# Security
+cryptography==41.0.7
+
+# Development
+black==23.12.1
+flake8==7.0.0
+mypy==1.8.0
+ipykernel==6.27.1
+jupyter==1.0.0
