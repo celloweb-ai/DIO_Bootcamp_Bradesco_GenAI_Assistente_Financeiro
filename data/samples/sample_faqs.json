@@ -1,0 +1,39 @@
+{
+  "faqs": [
+    {
+      "id": 1,
+      "categoria": "Conta Corrente",
+      "pergunta": "Como abrir uma conta corrente?",
+      "resposta": "Para abrir uma conta corrente, você precisa: 1) Ser maior de 18 anos; 2) Apresentar RG e CPF; 3) Comprovante de residência; 4) Pode ser feito pelo app, internet banking ou em uma agência.",
+      "tags": ["conta", "abertura", "documentos"]
+    },
+    {
+      "id": 2,
+      "categoria": "Investimentos",
+      "pergunta": "O que é CDB?",
+      "resposta": "CDB (Certificado de Depósito Bancário) é um investimento de renda fixa onde você empresta dinheiro ao banco em troca de juros. É garantido pelo FGC até R$ 250 mil por CPF e instituição.",
+      "tags": ["cdb", "renda fixa", "investimento"]
+    },
+    {
+      "id": 3,
+      "categoria": "Cartão de Crédito",
+      "pergunta": "Como aumentar o limite do cartão?",
+      "resposta": "O limite pode ser aumentado: 1) Automaticamente após análise de crédito periódica; 2) Por solicitação no app/internet banking; 3) Comprovando aumento de renda; 4) Mantendo bom histórico de pagamentos.",
+      "tags": ["cartão", "limite", "crédito"]
+    },
+    {
+      "id": 4,
+      "categoria": "Empréstimos",
+      "pergunta": "Qual a diferença entre SAC e PRICE?",
+      "resposta": "SAC (Sistema de Amortização Constante): parcelas decrescentes, amortização fixa. PRICE: parcelas fixas, juros maiores no início. SAC tem custo total menor, PRICE oferece maior previsibilidade.",
+      "tags": ["empréstimo", "financiamento", "sac", "price"]
+    },
+    {
+      "id": 5,
+      "categoria": "Pix",
+      "pergunta": "Como cadastrar chave Pix?",
+      "resposta": "No app: Menu Pix > Minhas Chaves > Cadastrar Chave. Você pode usar CPF, e-mail, telefone ou chave aleatória. O cadastro é instantâneo e gratuito.",
+      "tags": ["pix", "chave", "cadastro"]
+    }
+  ]
+}

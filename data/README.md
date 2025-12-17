@@ -1,34 +1,32 @@
-# Dados e Datasets
+# Diretório de Dados
 
-Este diretório contém os dados utilizados pelo assistente financeiro.
+Este diretório contém datasets e arquivos de dados utilizados pelo assistente financeiro.
 
 ## Estrutura
 
 ```
 data/
-├── raw/                  # Dados brutos
-├── processed/            # Dados processados
-├── external/             # Dados externos (APIs, etc)
-├── user_data/            # Dados de usuários (gitignored)
-└── samples/              # Dados de exemplo para testes
+├── raw/              # Dados brutos não processados
+├── processed/        # Dados processados e limpos
+├── samples/          # Dados de exemplo para testes
+└── exports/          # Dados exportados das análises
 ```
-
-## Segurança
-
-⚠️ **IMPORTANTE**: Nunca commite dados sensíveis ou pessoais!
-
-- Dados de usuários devem estar em `user_data/` (incluído no .gitignore)
-- Use sempre dados anonimizados para exemplos
-- Respeite a LGPD em todo tratamento de dados
 
 ## Datasets Disponíveis
 
-### Samples
-- `samples/transactions.csv` - Transações de exemplo
-- `samples/products.json` - Catálogo de produtos financeiros
-- `samples/faqs.json` - Base de perguntas frequentes
+### Samples (Demonstração)
+- `sample_transactions.csv` - Transações financeiras de exemplo
+- `sample_investments.csv` - Portfólio de investimentos
+- `sample_faqs.json` - Base de conhecimento inicial
 
-### External
-- Cotações de mercado (via API)
-- Taxas de juros (Banco Central)
-- Índices econômicos
+## Uso
+
+Os dados são carregados automaticamente pela aplicação. Para adicionar novos datasets:
+
+1. Coloque arquivos brutos em `raw/`
+2. Processe usando scripts em `notebooks/`
+3. Salve versões processadas em `processed/`
+
+## Privacidade
+
+⚠️ **IMPORTANTE**: Nunca commite dados sensíveis ou pessoais. Use dados anonimizados ou fictícios.

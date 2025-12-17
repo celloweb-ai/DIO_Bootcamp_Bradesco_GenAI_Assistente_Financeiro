@@ -1,0 +1,7 @@
+tipo,nome,valor_investido,valor_atual,rentabilidade,data_aplicacao
+CDB,CDB Banco XYZ 120% CDI,10000.00,10450.00,4.50,2024-01-15
+Tesouro Direto,Tesouro Selic 2027,5000.00,5180.00,3.60,2023-11-20
+Fundo Imobiliário,HGLG11,3000.00,3240.00,8.00,2024-02-01
+Ação,PETR4,2000.00,2180.00,9.00,2024-01-10
+Poupança,Poupança Bradesco,1500.00,1520.00,1.33,2023-12-01
+LCI,LCI Isenta IR,8000.00,8320.00,4.00,2024-01-05

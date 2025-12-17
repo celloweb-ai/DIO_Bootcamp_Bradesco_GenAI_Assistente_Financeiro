@@ -2,303 +2,264 @@
 
 ## Princípios de Design
 
-### 1. Clareza
-- **Linguagem simples**: Evitar jargões financeiros complexos
-- **Hierarquia visual**: Informações mais importantes em destaque
-- **Feedback imediato**: Resposta rápida a todas as ações
+### 1. Simplicidade
+- Interface limpa e intuitiva
+- Fluxos diretos sem passos desnecessários
+- Linguagem clara e acessível
 
-### 2. Confiança
-- **Transparência**: Explicar como as informações são usadas
-- **Segurança visível**: Indicadores de proteção de dados
-- **Consistência**: Padrões mantidos em toda aplicação
+### 2. Confiabilidade
+- Design profissional que transmite segurança
+- Feedback claro em todas as ações
+- Transparência nos processos
 
 ### 3. Acessibilidade
-- **Contraste adequado**: WCAG 2.1 AA compliance
-- **Responsividade**: Adaptação a diferentes telas
-- **Navegação por teclado**: Suporte completo
+- Contraste adequado (WCAG AA)
+- Suporte a leitores de tela
+- Navegação por teclado
+- Textos legíveis (mín. 14px)
 
 ## Paleta de Cores
 
 ### Cores Principais
 ```
-Primária (Azul Bradesco):  #CC092F (vermelho institucional)
-Secundária (Azul Escuro):  #003B7A
-Acento (Verde):            #00A86B (positivo/sucesso)
-Alerta (Amarelo):          #FFA500
-Erro (Vermelho):           #DC143C
+Primária (Azul Bradesco): #CC092F / #E30613
+Secundária (Azul): #003A70
+Sucesso: #28A745
+Alerta: #FFC107
+Erro: #DC3545
+Neutro: #6C757D
 ```
 
-### Cores de Suporte
-```
-Fundo Claro:      #FFFFFF
-Fundo Secundário: #F5F5F5
-Texto Principal:  #333333
-Texto Secundário: #666666
-Bordas:           #E0E0E0
-```
+### Aplicação
+- **Primária**: CTAs principais, destaques
+- **Secundária**: Links, elementos secundários
+- **Sucesso**: Confirmações, resultados positivos
+- **Alerta**: Avisos, atenção necessária
+- **Erro**: Erros, validações falhas
 
 ## Tipografia
 
-### Fontes
-```
-Principal: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI'
-Mono: 'Fira Code', 'Courier New', monospace (para valores)
-```
-
 ### Hierarquia
 ```
-H1: 32px, Bold (Títulos principais)
-H2: 24px, Semibold (Seções)
-H3: 20px, Semibold (Subseções)
-Body: 16px, Regular (Texto corrente)
-Small: 14px, Regular (Legendas)
+H1: 32px - Títulos principais
+H2: 24px - Seções
+H3: 20px - Subseções
+Body: 16px - Texto principal
+Caption: 14px - Legendas
+Small: 12px - Notas
 ```
+
+### Fontes
+- **Principal**: Inter, -apple-system, sans-serif
+- **Monospace**: 'Courier New' (valores financeiros)
 
 ## Componentes
 
-### Chatbot Interface
+### Chatbot
 
-**Layout**:
-```
-┌─────────────────────────────────┐
-│  🤖 Assistente Financeiro       │
-├─────────────────────────────────┤
-│                                 │
-│  💬 Mensagens do chat           │
-│  (scroll vertical)              │
-│                                 │
-├─────────────────────────────────┤
-│  [Digite sua mensagem...]  [>]  │
-└─────────────────────────────────┘
+#### Mensagens do Usuário
+- Alinhamento: Direita
+- Background: #E3F2FD (azul claro)
+- Borda: Arredondada (12px)
+- Padding: 12px 16px
+
+#### Mensagens do Assistente
+- Alinhamento: Esquerda
+- Background: #F5F5F5 (cinza claro)
+- Ícone: Robot emoji 🤖
+- Markdown: Suporte completo
+
+### Botões
+
+#### Primário
+```css
+Background: #CC092F
+Color: #FFFFFF
+Padding: 12px 24px
+Border-radius: 8px
+Hover: #A00725
 ```
 
-**Bolhas de Mensagem**:
-- **Usuário**: Alinhada à direita, fundo azul claro
-- **Assistente**: Alinhada à esquerda, fundo cinza claro
-- **Sistema**: Centralizada, itálico, cor neutra
+#### Secundário
+```css
+Background: transparent
+Border: 2px solid #003A70
+Color: #003A70
+Hover: Background #E3F2FD
+```
+
+### Cards
+```css
+Background: #FFFFFF
+Border: 1px solid #E0E0E0
+Border-radius: 12px
+Padding: 20px
+Shadow: 0 2px 8px rgba(0,0,0,0.08)
+```
+
+### Inputs
+```css
+Border: 1px solid #CED4DA
+Border-radius: 8px
+Padding: 10px 14px
+Focus: Border #003A70, Shadow
+Error: Border #DC3545
+```
+
+## Fluxos de Interação
+
+### Conversa com Chatbot
+
+1. **Abertura**
+   - Mensagem de boas-vindas
+   - Sugestões de tópicos
+   - Input sempre visível
+
+2. **Durante a Conversa**
+   - Indicador de digitação
+   - Scroll automático para novas mensagens
+   - Timestamps opcionais
+
+3. **Ações Rápidas**
+   - Botões de sugestão
+   - Atalhos para calculadoras
+   - Link para FAQs
 
 ### Calculadoras
 
-**Estrutura**:
-1. **Inputs**: Campos claros com labels e placeholders
-2. **Botão Calcular**: Destaque, cor primária
-3. **Resultados**: Cards separados, fácil leitura
-4. **Gráficos**: Visualização complementar
+1. **Entrada de Dados**
+   - Labels claros
+   - Placeholders com exemplos
+   - Validação em tempo real
+   - Máscaras para valores (R$)
 
-**Exemplo - Financiamento**:
-```
-┌────────────────────────────────┐
-│ Valor do Imóvel:               │
-│ [R$ ___________]               │
-│                                │
-│ Entrada:                       │
-│ [R$ ___________]               │
-│                                │
-│ Prazo (meses):                 │
-│ [___]                          │
-│                                │
-│     [📊 Calcular]              │
-└────────────────────────────────┘
-```
+2. **Resultados**
+   - Destaque visual
+   - Gráficos quando relevante
+   - Opção de salvar/exportar
+   - Comparações lado a lado
 
-### Cards de Produtos
+### Visualizações
 
-```
-┌─────────────────────────────┐
-│ 💳 Conta Digital            │
-├─────────────────────────────┤
-│ Zero tarifas mensais        │
-│ Cartão sem anuidade         │
-│                             │
-│ [Saiba mais →]              │
-└─────────────────────────────┘
-```
+#### Gráficos
+- **Cores**: Paleta consistente
+- **Tooltips**: Informativos
+- **Responsividade**: Mobile-friendly
+- **Interatividade**: Zoom, filtros
 
-## Microinterações
+#### Tabelas
+- **Cabeçalhos**: Fixos ao scroll
+- **Zebra striping**: Linhas alternadas
+- **Ordenação**: Clicável
+- **Paginação**: 10-20 itens/página
 
-### Loading States
-- **Typing indicator**: Três pontos animados
-- **Skeleton screens**: Placeholder durante carregamento
-- **Progress bars**: Para processos longos
+## Estados de Interface
 
-### Feedback Visual
-- **Hover**: Mudança sutil de cor/sombra
-- **Focus**: Outline azul acessível
-- **Success**: Check verde com fade-in
-- **Error**: Shake animation + mensagem clara
+### Loading
+- Spinner com mensagem contextual
+- Skeleton screens para conteúdo
+- Progress bar para processos longos
 
-### Transições
-```css
-Transição padrão: 200ms ease-in-out
-Fade: opacity 300ms
-Slide: transform 250ms cubic-bezier(0.4, 0, 0.2, 1)
-```
+### Empty States
+- Ilustração amigável
+- Texto explicativo
+- CTA para primeira ação
 
-## Mensagens e Tone of Voice
+### Erro
+- Mensagem clara do problema
+- Sugestão de solução
+- Opção de tentar novamente
+- Contato para suporte
 
-### Características
-- **Amigável**: "Olá! Como posso ajudar você hoje?"
-- **Profissional**: Sem gírias, mas acessível
-- **Empático**: Reconhecer situações do usuário
-- **Educativo**: Explicar quando necessário
-
-### Exemplos
-
-❌ **Evitar**:
-"Erro 404: Recurso não encontrado"
-
-✅ **Preferir**:
-"Ops! Não consegui encontrar essa informação. Que tal reformular sua pergunta?"
-
-❌ **Evitar**:
-"Input inválido"
-
-✅ **Preferir**:
-"Por favor, insira um valor entre R$ 1.000 e R$ 10.000.000"
-
-## Fluxos de Usuário
-
-### 1. Primeira Interação
-```
-1. Boas-vindas automáticas
-2. Breve explicação do que o assistente faz
-3. Sugestões de perguntas iniciais
-4. Campo de entrada em foco
-```
-
-### 2. Consulta de FAQ
-```
-1. Usuário digita pergunta
-2. Loading indicator (typing...)
-3. Resposta estruturada com:
-   - Resposta direta
-   - Informações complementares
-   - Links úteis (se aplicável)
-4. "Isso respondeu sua dúvida?" [Sim] [Não]
-```
-
-### 3. Uso de Calculadora
-```
-1. Usuário menciona cálculo
-2. Assistente oferece calculadora específica
-3. Formulário interativo aparece
-4. Validação em tempo real
-5. Resultados com visualização
-6. Opção de salvar/compartilhar
-```
+### Sucesso
+- Confirmação visual (✓)
+- Mensagem positiva
+- Próximos passos sugeridos
 
 ## Responsividade
 
 ### Breakpoints
 ```
-Mobile:  < 768px
-Tablet:  768px - 1024px
+Mobile: < 768px
+Tablet: 768px - 1024px
 Desktop: > 1024px
 ```
 
-### Adaptações Mobile
-- Menu hambúrguer
-- Cards em coluna única
-- Botões com altura mínima de 44px
-- Font-size base: 16px (evitar zoom no iOS)
+### Mobile First
+- Design primário para mobile
+- Progressive enhancement
+- Touch targets mín. 44x44px
+- Gestos intuitivos
+
+## Microinterações
+
+### Animações
+- **Duração**: 200-300ms
+- **Easing**: ease-in-out
+- **Uso**: Transições suaves, não distrações
+
+### Feedback Tátil
+- Hover states claros
+- Active states visíveis
+- Focus rings para acessibilidade
+
+## Mensagens e Copywriting
+
+### Tom de Voz
+- Profissional mas amigável
+- Claro e direto
+- Evitar jargões técnicos
+- Use "você" (informal)
+
+### Exemplos
+
+✅ **Bom**: "Vamos calcular seu financiamento?"
+❌ **Ruim**: "Iniciar processo de cálculo de amortização"
+
+✅ **Bom**: "Algo deu errado. Tente novamente."
+❌ **Ruim**: "Erro 500: Internal Server Error"
 
 ## Acessibilidade (WCAG 2.1)
 
-### Checklist
-- [ ] Contraste mínimo 4.5:1 para texto
-- [ ] Todos os elementos interativos navegáveis por teclado
-- [ ] Alt text em todas as imagens
-- [ ] Labels em todos os inputs
-- [ ] Skip links para navegação
-- [ ] ARIA labels onde necessário
-- [ ] Focus visível em todos os elementos
-- [ ] Sem dependência exclusiva de cor
+### Nível AA Compliance
 
-### Screen Readers
-- Ordem lógica de leitura
-- Landmarks ARIA (navigation, main, aside)
-- Live regions para atualizações dinâmicas
+- [ ] Contraste mínimo 4.5:1
+- [ ] Texto redimensionável até 200%
+- [ ] Navegação por teclado
+- [ ] Alt text em imagens
+- [ ] Labels em formulários
+- [ ] ARIA labels quando necessário
+- [ ] Foco visível
+- [ ] Estrutura semântica HTML
 
-## Animações e Performance
+### Testes
+- Lighthouse Audit
+- axe DevTools
+- Leitores de tela (NVDA, JAWS)
+- Navegação por teclado
 
-### Princípios
-- **Sutileza**: Animações devem ajudar, não distrair
-- **Performance**: 60fps, usar transform/opacity
-- **Respeitar preferências**: `prefers-reduced-motion`
+## Performance
 
-### Exemplos
-```css
-/* Respeitar preferência de movimento reduzido */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-```
+### Otimizações
+- Lazy loading de imagens
+- Code splitting
+- Minificação de assets
+- Cache de dados
+- Debounce em inputs
 
-## Testes de Usabilidade
+### Métricas Alvo
+- First Contentful Paint: < 1.8s
+- Time to Interactive: < 3.9s
+- Largest Contentful Paint: < 2.5s
 
-### Métricas
-- **Time to First Interaction**: < 3s
-- **Response Time**: < 2s para respostas simples
-- **Error Rate**: < 5% de erros de usuário
-- **Satisfaction Score**: > 4.5/5
+## Checklist de Qualidade
 
-### A/B Testing
-- Variações de mensagens de boas-vindas
-- Posicionamento de CTAs
-- Cores de botões principais
-- Estrutura de respostas do chatbot
+Antes de cada release:
 
-## Recursos de Design
-
-### Ícones
-- **Biblioteca**: Lucide Icons / Heroicons
-- **Tamanho padrão**: 24x24px
-- **Estilo**: Outline (linha)
-
-### Ilustrações
-- **Estilo**: Flat, moderno, amigável
-- **Paleta**: Consistente com cores da marca
-- **Uso**: Estados vazios, onboarding, erros
-
-## Documentação para Desenvolvedores
-
-### Componentes Streamlit Customizados
-```python
-# Exemplo de componente de chat
-import streamlit as st
-
-def chat_message(message, is_user=False):
-    alignment = "flex-end" if is_user else "flex-start"
-    bg_color = "#E3F2FD" if is_user else "#F5F5F5"
-    
-    st.markdown(f"""
-    <div style="display: flex; justify-content: {alignment};">
-        <div style="
-            background-color: {bg_color};
-            padding: 12px 16px;
-            border-radius: 12px;
-            max-width: 70%;
-            margin: 8px 0;
-        ">
-            {message}
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-```
-
-## Manutenção e Evolução
-
-### Design System (futuro)
-- Componentização completa
-- Storybook para documentação
-- Tokens de design (cores, espaçamentos)
-- Versionamento semântico
-
-### Feedback dos Usuários
-- Coletar feedback após interações
-- Análise de heatmaps
-- Session recordings
-- Pesquisas de satisfação
+- [ ] Teste em diferentes navegadores
+- [ ] Teste em dispositivos mobile
+- [ ] Validação de acessibilidade
+- [ ] Performance audit
+- [ ] Spell check
+- [ ] Teste de usabilidade
+- [ ] Revisão de copywriting

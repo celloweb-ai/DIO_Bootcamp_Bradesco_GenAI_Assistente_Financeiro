@@ -2,190 +2,177 @@
 
 ## Visão Geral
 
-O Assistente Financeiro Inteligente é construído com uma arquitetura modular que separa responsabilidades e facilita manutenção e escalabilidade.
+O Assistente Financeiro Inteligente segue uma arquitetura modular baseada em microserviços, permitindo escalabilidade e manutenibilidade.
 
 ## Diagrama de Componentes
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                    Interface (Streamlit)                     │
-└────────────────┬────────────────────────────────────────────┘
-                 │
-        ┌────────┴────────┐
-        │   app.py (Main)  │
-        └────────┬─────────┘
-                 │
-    ┌────────────┼────────────┐
-    │            │            │
-┌───▼───┐   ┌───▼───┐   ┌───▼────┐
-│Chatbot│   │  FAQ  │   │Calcul. │
-└───┬───┘   └───┬───┘   └───┬────┘
-    │           │            │
-    └───────┬───┴────────────┘
-            │
-    ┌───────▼────────┐
-    │ Context Manager │
-    └───────┬─────────┘
-            │
-    ┌───────▼──────────┐
-    │  Data Analysis   │
-    └───────┬──────────┘
-            │
-    ┌───────▼──────────┐
-    │    Database      │
-    └──────────────────┘
+┌─────────────────────────────────────────────────────────┐
+│                  Interface Streamlit                     │
+│                      (app.py)                           │
+└────────────────────┬────────────────────────────────────┘
+                     │
+        ┌────────────┴────────────┐
+        │                         │
+   ┌────▼─────┐            ┌─────▼──────┐
+   │ Chatbot  │            │ Analytics  │
+   │  Module  │            │   Module   │
+   └────┬─────┘            └─────┬──────┘
+        │                        │
+   ┌────▼──────────────────┬─────▼──────┐
+   │  LLM Integration      │  Data      │
+   │  (OpenAI/Gemini)      │  Analysis  │
+   └───────────────────────┴────────────┘
+                     │
+        ┌────────────┴────────────┐
+        │                         │
+   ┌────▼─────┐            ┌─────▼──────┐
+   │  FAQs    │            │ Context    │
+   │  Module  │            │  Manager   │
+   └────┬─────┘            └─────┬──────┘
+        │                        │
+   ┌────▼────────────────────────▼──────┐
+   │      Database Layer (SQLite)       │
+   └────────────────────────────────────┘
 ```
 
-## Módulos Principais
+## Componentes Principais
 
-### 1. Chatbot (`src/chatbot/`)
-**Responsabilidade**: Processamento de linguagem natural e geração de respostas
+### 1. Interface (Streamlit)
+- **Responsabilidade**: Renderização da UI e gerenciamento de sessão
+- **Tecnologia**: Streamlit 1.28+
+- **Comunicação**: Chamadas síncronas aos módulos
 
-- **LLM Integration**: Conexão com OpenAI/Gemini
-- **Prompt Engineering**: Templates otimizados
-- **Response Parser**: Formatação de saídas
+### 2. Chatbot Module
+- **Responsabilidade**: Processamento de linguagem natural
+- **Componentes**:
+  - `ChatbotEngine`: Orquestração de conversas
+  - `IntentClassifier`: Classificação de intenções
+  - `ResponseGenerator`: Geração de respostas
+- **Tecnologia**: LangChain, OpenAI API
 
-**Tecnologias**:
-- LangChain para orquestração
-- OpenAI GPT-4 / Google Gemini
-- Token management e streaming
+### 3. Calculators Module
+- **Responsabilidade**: Cálculos financeiros
+- **Funções**:
+  - Financiamentos (SAC, PRICE)
+  - Investimentos
+  - Juros compostos
+  - Simulações
 
-### 2. Calculadoras (`src/calculators/`)
-**Responsabilidade**: Cálculos financeiros precisos
+### 4. Knowledge Base (FAQs)
+- **Responsabilidade**: Gerenciamento de perguntas frequentes
+- **Recursos**:
+  - Busca semântica
+  - Embeddings vetoriais
+  - Cache de respostas
 
-**Componentes**:
-- `loan_calculator.py`: Financiamentos (SAC, Price)
-- `investment_calculator.py`: Rentabilidade de investimentos
-- `retirement_calculator.py`: Planejamento de aposentadoria
+### 5. Data Analysis
+- **Responsabilidade**: Análise e visualização de dados
+- **Bibliotecas**: Pandas, Plotly, NumPy
+- **Outputs**: Gráficos interativos, insights
 
-### 3. Base de Conhecimento (`src/knowledge_base/`)
-**Responsabilidade**: Gerenciamento de FAQs e documentos
+### 6. Context Manager
+- **Responsabilidade**: Persistência de conversações
+- **Armazenamento**: SQLite com backup JSON
+- **Features**: Histórico, sessões, preferências
 
-**Funcionalidades**:
-- Busca semântica (embeddings)
-- Ranking de relevância
-- Cache de respostas frequentes
-
-### 4. Análise de Dados (`src/data_analysis/`)
-**Responsabilidade**: Insights e visualizações
-
-**Recursos**:
-- Análise de transações
-- Categorização automática
-- Gráficos interativos (Plotly)
-- Relatórios personalizados
-
-### 5. Gerenciador de Contexto (`src/context_manager.py`)
-**Responsabilidade**: Persistência de conversações
-
-**Características**:
-- Histórico de mensagens
-- Sessões de usuário
-- Memória de curto/longo prazo
-
-### 6. Database (`src/database/`)
-**Responsabilidade**: Persistência de dados
-
-**Estrutura**:
-- SQLite para desenvolvimento
-- Preparado para PostgreSQL em produção
-- Migrations automáticas
+### 7. Database Layer
+- **Responsabilidade**: Persistência de dados
+- **Tecnologia**: SQLite3
+- **Tabelas**:
+  - `conversations`: Histórico de conversas
+  - `user_preferences`: Preferências do usuário
+  - `faqs_cache`: Cache de FAQs
 
 ## Fluxo de Dados
 
-### 1. Requisição do Usuário
-```
-Usuário → Interface → Chatbot → Context Manager
-                         ↓
-                    LLM (GPT/Gemini)
-                         ↓
-                    Knowledge Base ← FAQs
-                         ↓
-                    Response Parser
-                         ↓
-                    Interface → Usuário
-```
+### Fluxo de Conversa Típica
 
-### 2. Cálculo Financeiro
 ```
-Usuário → Interface → Calculator Module
-                         ↓
-                    Validation
-                         ↓
-                    Computation
-                         ↓
-                    Data Analysis (charts)
-                         ↓
-                    Interface → Usuário
+Usuário → Streamlit → ChatbotEngine
+                          ↓
+                   IntentClassifier
+                          ↓
+            ┌─────────────┴─────────────┐
+            │                           │
+       FAQ Module              Calculator Module
+            │                           │
+            └─────────────┬─────────────┘
+                          ↓
+                  ResponseGenerator
+                          ↓
+                   ContextManager
+                          ↓
+                      Database
+                          ↓
+                    Streamlit UI
 ```
 
 ## Segurança
 
-### Camadas de Proteção
+### Camadas de Segurança
 
-1. **API Keys**: Variáveis de ambiente (.env)
-2. **Dados Sensíveis**: Criptografia AES-256
-3. **Input Validation**: Sanitização de entradas
+1. **Autenticação**: Tokens de sessão
+2. **Criptografia**: AES-256 para dados sensíveis
+3. **Validação**: Input sanitization
 4. **Rate Limiting**: Proteção contra abuso
-5. **LGPD Compliance**: Anonimização de dados
+5. **Logs**: Auditoria de acessos
+
+### Conformidade LGPD
+
+- Consentimento explícito
+- Direito ao esquecimento
+- Portabilidade de dados
+- Anonimização quando aplicável
 
 ## Escalabilidade
 
-### Horizontal Scaling
-- Stateless application design
-- Session management via Redis (futuro)
-- Load balancing ready
+### Vertical
+- Otimização de queries SQL
+- Cache em memória (Redis futuro)
+- Compressão de dados
 
-### Vertical Scaling
-- Caching strategies
-- Database indexing
-- Async operations
-
-## Tecnologias
-
-| Camada | Tecnologia | Propósito |
-|--------|-----------|----------|
-| Frontend | Streamlit | Interface web |
-| Backend | Python 3.9+ | Lógica de negócio |
-| LLM | OpenAI/Gemini | IA Generativa |
-| Database | SQLite/PostgreSQL | Persistência |
-| Cache | In-memory/Redis | Performance |
-| Analytics | Pandas/Plotly | Análise de dados |
-
-## Ambiente de Desenvolvimento
-
-```bash
-# Development
-Streamlit local server
-SQLite database
-Debug mode enabled
-
-# Production (futuro)
-Gunicorn + Nginx
-PostgreSQL
-Docker containers
-Kubernetes orchestration
-```
+### Horizontal
+- Preparado para containerização (Docker)
+- Stateless quando possível
+- Microserviços independentes
 
 ## Monitoramento
 
-### Métricas (futuro)
-- Response time
-- Error rate
-- User satisfaction
-- API usage
-- Cost tracking
+- **Logs**: Estruturados em JSON
+- **Métricas**: Tempo de resposta, taxa de erro
+- **Alertas**: Thresholds configuráveis
 
-### Logging
-- Structured logging (JSON)
-- Error tracking (Sentry)
-- Analytics (Google Analytics)
+## Tecnologias
 
-## Roadmap Técnico
+| Componente | Tecnologia | Versão |
+|------------|------------|--------|
+| Backend | Python | 3.9+ |
+| UI | Streamlit | 1.28+ |
+| LLM | OpenAI/Gemini | Latest |
+| Database | SQLite | 3.x |
+| Orquestração | LangChain | 0.1+ |
+| Análise | Pandas | 2.x |
+| Visualização | Plotly | 5.x |
 
-- [ ] Microservices architecture
-- [ ] GraphQL API
-- [ ] Real-time updates (WebSockets)
-- [ ] ML models para recomendações
-- [ ] Integration com Open Banking
-- [ ] Mobile app (React Native)
+## Deployment
+
+### Ambientes
+
+1. **Desenvolvimento**: Local com SQLite
+2. **Staging**: Streamlit Cloud
+3. **Produção**: Cloud (AWS/Azure/GCP)
+
+### CI/CD
+
+- GitHub Actions para testes
+- Deploy automático via Git push
+- Rollback automático em falhas
+
+## Próximos Passos
+
+- [ ] Migração para PostgreSQL
+- [ ] Implementação de cache Redis
+- [ ] API REST para integrações
+- [ ] Containerização com Docker
+- [ ] Kubernetes para orquestração
